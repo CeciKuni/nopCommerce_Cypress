@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "open": "cypress open",
+    "test": "cypress run",
+    "html-report": "cypress run --spec cypress/e2e/test_add_search_delete_customer.cy.js --browser chrome --headed"
+  },
+  "devDependencies": {
+    "@cypress/xpath": "^2.0.3",
+    "cypress": "^12.15.0",
+    "cypress-mochawesome-reporter": "^3.5.1",
+    "faker": "^5.5.3"
+  }
+}

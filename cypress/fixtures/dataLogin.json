@@ -1,0 +1,22 @@
+[
+    {
+        "username": "admin@yourstore.com",
+        "password": "admin",
+        "result": "Pass"
+    },
+    {
+        "username": "admin@yourstore.com",
+        "password": "admn",
+        "result": "Fail"
+    },
+    {
+        "username": "adm@yourstore.com.ar",
+        "password": "admin",
+        "result": "Fail"
+    },
+    {
+        "username": "admin@yourstore.com",
+        "password": "admn",
+        "result": "Fail"
+    }
+]
