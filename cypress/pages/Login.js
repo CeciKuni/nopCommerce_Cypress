@@ -1,3 +1,8 @@
+const USERNAME = "#Email";
+const PASSWORD = "#Password";
+const LOGIN_BUTTON = "button[type='submit']";
+
+
 class LoginPage {
   navigateToLoginPage(title) {
     cy.visit("/login");
@@ -5,13 +10,13 @@ class LoginPage {
   }
 
   setUsernameAndPassword(username, password) {
-    cy.get("#Email").clear().type(username);
-    cy.get("#Password").clear().type(password);
+    cy.get(USERNAME).clear().type(username);
+    cy.get(PASSWORD).clear().type(password);
 
   }
 
   clickLoginButton() {
-    cy.get("button[type='submit']").click({force: true});
+    cy.get(LOGIN_BUTTON).click({force: true});
   }
 }
 

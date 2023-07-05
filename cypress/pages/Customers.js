@@ -1,154 +1,151 @@
-export class AddCustomer {
+//Add customer page
+const CUSTOMER_MENU_ITEM =
+  "a[href='/Admin/Customer/List'] p:contains('Customers')";
+const EMAIL = "#Email";
+const PASSWORD = "#Password";
+const FIRSTNAME = "#FirstName";
+const LASTNAME = "#LastName";
+const DOB = "#DateOfBirth";
+const COMPANY = "#Company";
+const VENDOR = "#VendorId";
+const DEFAULT_ROL = ".k-button";
+const DELETE_BUTTON_ROL = "span[title='delete']";
+const MALE = "#Gender_Male";
+const FEMALE = "#Gender_Female";
+const CUSTOMER_ROLES = "div.input-group-append.input-group-required div[role='listbox']";
+const LIST_ROLES = ".k-item";
+const ADMIN_COMMENT = "#AdminComment";
 
+//Search customer page
+const SEARCH_EMAIL = "#SearchEmail";
+const SEARCH_FIRSTNAME = "#SearchFirstName";
+const SEARCH_LASTNAME = "#SearchLastName";
+const SEARCH_CUSTOMER_BUTTON = "#search-customers";
+const EMAIL_COLUMN = ".odd > :nth-child(2)";
+const COLUMN_NAME = "tbody > :nth-child(1) > :nth-child(3)";
+const DELETE_BUTTON = "span#customer-delete";
+const MODAL_DELETE_BUTTON = ".modal-footer > .btn-danger";
+
+export class AddCustomer {
   clickOnCustomerMenu() {
     cy.contains("p", "Customers").should("be.visible").click();
   }
-
   clickOnCustomerMenuItem() {
-    cy.xpath(
-      "//a[@href='/Admin/Customer/List']//p[contains(text(),'Customers')]"
-    ).click();
+    cy.get(CUSTOMER_MENU_ITEM).click();
   }
-
   clickOnAddNew() {
     cy.contains("Add new", { timeout: 3000 }).should("be.visible").click();
   }
-
   setEmail(email) {
-    cy.get("#Email").type(email);
+    cy.get(EMAIL).type(email);
   }
-
   setPassword(password) {
-    cy.get("#Password").type(password);
+    cy.get(PASSWORD).type(password);
   }
-
   setFirstName(firstname) {
-    cy.get("#FirstName").type(firstname);
+    cy.get(FIRSTNAME).type(firstname);
   }
-
   setLastName(lastname) {
-    cy.get("#LastName").type(lastname);
+    cy.get(LASTNAME).type(lastname);
   }
-
   setDOB(dob) {
-    cy.get("#DateOfBirth").type(dob);
+    cy.get(DOB).type(dob);
   }
-
   setCompanyName(companyName) {
-    cy.get("#Company").type(companyName);
+    cy.get(COMPANY).type(companyName);
   }
-  
   setManagerVendor(vendor) {
-    cy.get("#VendorId").select(vendor)
+    cy.get(VENDOR).select(vendor);
   }
-
   verifyDefaultRole(role) {
-    cy.get(".k-button").should("have.attr", "unselectable", "on");
+    cy.get(DEFAULT_ROL).should("have.attr", "unselectable", "on");
   }
-
   clearDefaultRole() {
-    cy.xpath("//span[@title='delete']").click();
+    cy.get(DELETE_BUTTON_ROL).click();
   }
-
   selectGender(gender) {
     switch (gender) {
       case "Male":
-        cy.get("#Gender_Male").click();
+        cy.get(MALE).click();
         break;
       case "Female":
-        cy.get("#Gender_Female").click();
+        cy.get(FEMALE).click();
         break;
       default:
-        cy.get("#Gender_Male").click();    
+        cy.get(MALE).click();
     }
   }
-
   selectRole(rol) {
-    cy.xpath(
-      "//div[@class='input-group-append input-group-required']//div[@role='listbox']"
-    ).click();
+    cy.get(CUSTOMER_ROLES).click();
     switch (rol) {
       case "Vendors":
-        cy.get(".k-item").contains("Vendors").click();
+        cy.get(LIST_ROLES).contains("Vendors").click();
         break;
       case "Guests":
-        cy.get(".k-item").contains("Guests").click();
+        cy.get(LIST_ROLES).contains("Guests").click();
         break;
       case "Administrators":
-        cy.get(".k-item").contains("Administrators").click();
+        cy.get(LIST_ROLES).contains("Administrators").click();
         break;
       default:
-        cy.get(".k-item").contains("Registered").click();
+        cy.get(LIST_ROLES).contains("Registered").click();
     }
   }
-
   setAdminComment(comment) {
-    cy.get("#AdminComment").type(comment);
+    cy.get(ADMIN_COMMENT).type(comment);
   }
-
-  clickOnSave(){
+  clickOnSave() {
     cy.get("button").contains("Save").click();
   }
-
   validateSavedCustomer() {
-    cy.contains("body", "The new customer has been added successfully.").should("exist");
+    cy.contains("body", "The new customer has been added successfully.").should(
+      "exist"
+    );
   }
 }
 
-export class SearchCustomer{
-
+export class SearchCustomer {
   setEmail(email) {
-    cy.get("#SearchEmail").type(email);
+    cy.get(SEARCH_EMAIL).type(email);
   }
 
   setFirstName(firstname) {
-    cy.get("#SearchFirstName").type(firstname);
+    cy.get(SEARCH_FIRSTNAME).type(firstname);
   }
 
   setLastName(lastname) {
-    cy.get("#SearchLastName").type(lastname);
+    cy.get(SEARCH_LASTNAME).type(lastname);
   }
 
   clearRole() {
-    cy.xpath("//span[@title='delete']").click();
+    cy.get(DELETE_BUTTON_ROL).click();
   }
 
   clickSearch() {
-    cy.get("#search-customers").click();
+    cy.get(SEARCH_CUSTOMER_BUTTON).click();
   }
 
   emailInTable(email) {
-    cy.get('.odd > :nth-child(2)')
-      .contains(email);
+    cy.get(EMAIL_COLUMN).contains(email);
   }
 
   nameInTable(firstname, lastname) {
-    cy.get('tbody > :nth-child(1) > :nth-child(3)')
-      .contains(firstname + " " + lastname);
+    cy.get(COLUMN_NAME).contains(firstname + " " + lastname);
   }
 
   clickBtnEdit() {
-    cy.xpath("//a[normalize-space()='Edit']")
-    .should("be.visible")
-    .click();
+    cy.get("a").contains("Edit").click();
   }
 
   clickDeleteCustomer() {
-    cy.xpath("//span[@id='customer-delete']")
-    .should("be.visible")
-    .click();
+    cy.get(DELETE_BUTTON).should("be.visible").click();
   }
 
   confirmDeleteCustomer() {
-    cy.xpath("//button[normalize-space()='Delete']")
-    .should("be.visible")
-    .click();
+    cy.get(MODAL_DELETE_BUTTON).should("be.visible").click();
   }
 
   validateDeletedCustomer() {
     cy.contains("body", "The customer has been deleted successfully.").should("exist");
   }
-
-
 }
-

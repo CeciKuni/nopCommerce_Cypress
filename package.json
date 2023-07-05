@@ -2,7 +2,7 @@
   "scripts": {
     "open": "cypress open",
     "test": "cypress run",
-    "html-report": "cypress run --spec cypress/e2e/test_add_search_delete_customer.cy.js --browser chrome --headed"
+    "html-report": "cypress run --spec cypress/e2e/**js --browser chrome --headed"
   },
   "devDependencies": {
     "@cypress/xpath": "^2.0.3",
