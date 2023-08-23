@@ -57,7 +57,7 @@ Para generar el reporte en html.
 ```
 $ npm run html-report
 ```
-Para ejecutar los test por consola sin abrir el navegador o la interfaz de Cypress:
+Para ejecutar los tests por consola sin abrir el navegador o la interfaz de Cypress:
 ```
 $ npm test
 ```
